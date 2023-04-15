@@ -89,8 +89,8 @@ export default function main(_) {
     (() => {
         let titleInfo = $('#cnblogs_post_body').find(':header')
         if (_.__config.articleContent.prefixIcon.enable && titleInfo.length > 0) {
-            _.__tools.dynamicLoadingJs(_.__config.articleContent.options.link).then(r => {
-                let iconfonts = _.__config.articleContent.options.iconfontArr
+            _.__tools.dynamicLoadingJs(_.__config.articleContent.prefixIcon.options.link).then(r => {
+                let iconfonts = _.__config.articleContent.prefixIcon.options.iconfontArr
                 titleInfo.html((i, c) => {
                     let arr = []
                     let num = Math.floor(Math.random() * (iconfonts.length - i) + i)
