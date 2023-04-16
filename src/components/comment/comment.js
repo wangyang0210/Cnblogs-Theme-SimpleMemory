@@ -43,9 +43,13 @@ export default function main(_) {
         }
     }
 
+
     $(document).ajaxSuccess(function (event, xhr, settings) {
         if (settings.url.includes("GetComments.aspx") && $('.feedbackItem').length > 0) {
-             setComment();
+             _.__timeIds.commentTId = window.setTimeout(() =>{
+                    setComment();
+                    _.__tools.clearIntervalTimeId(_.__timeIds.commentTId);
+            }, 1000);
         }
     });
 
