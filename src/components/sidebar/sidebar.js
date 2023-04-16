@@ -339,4 +339,14 @@ export default function main(_) {
             }, 300);
         });
     })();
+
+    /**
+     * 头像旋转动效
+     */
+    (() => {
+        if ($.__config.animate.avatar.enable) {
+            $('#menuBlogAvatar').addClass('img-rounded')
+            $('.author_avatar').addClass('img-rounded')
+        }
+    })();
 }
