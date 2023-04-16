@@ -43,22 +43,11 @@ export default function main(_) {
         }
     }
 
-    _.__timeIds.commentTId = window.setInterval(() =>{
-        if ($('.feedbackItem').length > 0) {
-            setComment();
-            _.__tools.clearIntervalTimeId(_.__timeIds.commentTId);
-        }
-    }, 1000);
-
     $(document).ajaxSuccess(function (event, xhr, settings) {
-        if (settings.url.includes("GetComments.aspx")) {
-            _.__tools.clearIntervalTimeId(_.__timeIds.commentTId);
+        if (settings.url.includes("GetComments.aspx") && $('.feedbackItem').length > 0) {
+             setComment();
         }
     });
-
-    $(document).ajaxSuccess(function (event, xhr, settings) {
-        if (settings.url.includes('Add.aspx')) setComment()
-    })
 
     $(document).ajaxSuccess(function (event, xhr, settings) {
         if (settings.url.includes('DeleteComment.aspx')) {
