@@ -42,15 +42,24 @@ export default function main(_) {
             $(feedbackItem[feedbackItem.length - 1]).css('padding-bottom', '0');
         }
     }
-    $(document).ajaxSuccess(function (event, xhr, settings) {
-        if (settings.url.includes("GetComments.aspx")) {
-            _.__tools.clearIntervalTimeId(_.__timeIds.commentTId);
-        }
-    });
+
     _.__timeIds.commentTId = window.setInterval(() =>{
         if ($('.feedbackItem').length > 0) {
             setComment();
             _.__tools.clearIntervalTimeId(_.__timeIds.commentTId);
         }
-    },1000);
+    }, 1000);
+
+    $(document).ajaxSuccess(function (event, xhr, settings) {
+        if (settings.url.includes('GetComments.aspx')) setComment()
+    });
+
+    $(document).ajaxSuccess(function (event, xhr, settings) {
+        if (settings.url.includes('DeleteComment.aspx')) {
+            let obj = $('.feedbackItem .feedbackCon .blog_comment_body')
+            $.each(obj, i => {
+                if (!$(obj[i]).text()) console.log($(obj[i]).parent().parent().remove())
+            })
+        }
+    });
 }
