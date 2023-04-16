@@ -171,6 +171,9 @@
         sizeF: 36
       }
     },
+    avatar: {
+        enable: false,
+    },
     season: {
         enable: false,
         options: {

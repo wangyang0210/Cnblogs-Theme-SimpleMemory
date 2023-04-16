@@ -888,6 +888,32 @@ window.cnblogsConfig = {
 ```
 
 
+### avatar - 头像旋转特效
+
+?> 版本 >= v2.1.3
+
+-   类型：`Object`
+-   默认值：
+
+```json
+{
+  enable: false // 是否开启
+}
+```
+
+```javascript
+window.cnblogsConfig = {
+    animate: {
+        avatar: {
+            enable: false,
+        },
+    },
+}
+```
+
+
+
+
 ### season - 背景动效
 
 ?> 版本 >= v2.1.3
