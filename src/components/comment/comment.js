@@ -40,7 +40,6 @@ export default function main(_) {
             });
             $(feedbackItem[0]).css('padding-top', '0');
             $(feedbackItem[feedbackItem.length - 1]).css('padding-bottom', '0');
-            _.__config.animate.avatar.enable && $('.feedbackAvatar').addClass('img-rounded')
         }
     }
 
@@ -52,8 +51,14 @@ export default function main(_) {
     }, 1000);
 
     $(document).ajaxSuccess(function (event, xhr, settings) {
-        if (settings.url.includes('GetComments.aspx')) setComment()
+        if (settings.url.includes("GetComments.aspx")) {
+            _.__tools.clearIntervalTimeId(_.__timeIds.commentTId);
+        }
     });
+
+    $(document).ajaxSuccess(function (event, xhr, settings) {
+        if (settings.url.includes('Add.aspx')) setComment()
+    })
 
     $(document).ajaxSuccess(function (event, xhr, settings) {
         if (settings.url.includes('DeleteComment.aspx')) {
