@@ -19,8 +19,6 @@ $(document).ready(function () {
     _.__timeIds = {}; // 定时器
     _.__event = {}; // 事件
 
-    window._ = _;
-
     if (_.__config.info.name === '') _.__config.info.name = _.__status.user;
 
     // 开启渲染

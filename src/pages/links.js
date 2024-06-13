@@ -33,51 +33,31 @@ const generateSectionHtml = (data) => {
 };
 
 export default function main(_) {
-    console.log(_);
+    /**
+     * 文章页公共处理
+     */
+    (() => {
+        comArticle(_);
+    })();
 
-    // 文章页公共处理
-    comArticle(_);
+    /**
+     * 添加友链
+     */
+    (() => {
+        if (_.__config.links.page.length) {
+            const postBody = $('#cnblogs_post_body');
+            const articleSuffixFlg = $('.articleSuffix-flg');
+            const linksHtml = _.__config.links.page.map(generateSectionHtml).join('');
 
-    // 添加友链
-    if (_.__config.links.page.length) {
-        const postBody = $('#cnblogs_post_body');
-        const articleSuffixFlg = $('.articleSuffix-flg');
-        const linksHtml = _.__config.links.page.map(generateSectionHtml).join('');
+            // 插入模版
+            articleSuffixFlg.length ? articleSuffixFlg.before(linksHtml) : postBody.append(linksHtml);
+        }
+    })();
 
-        // 插入模版
-        articleSuffixFlg.length ? articleSuffixFlg.before(linksHtml) : postBody.append(linksHtml);
-    }
-    // if (_.__config.links.page.length) {
-    //     const postBody = $('#cnblogs_post_body'),
-    //         articleSuffixFlg = $('.articleSuffix-flg');
-
-    //     let html = '';
-    //     // [{ title: '', icon: '', style: '', links: [{ avatar: '', name: '', introduction: '', url: '' }] }];
-    //     _.__config.links.page.forEach((data) => {
-    //         const { title, icon, style, links } = data;
-
-    //         if (title) html += `<h1 class="iconfont ${icon}" style="${style}">${title}</h1>`;
-
-    //         html += '<div id="links-box">';
-
-    //         links.forEach((link, i) => {
-    //             const { avatar, name, introduction, url } = link;
-    //             html += _.__tools.batchTempReplacement(linksTemp, [
-    //                 ['avatar', avatar || ''],
-    //                 ['name', name || ''],
-    //                 ['introduction', introduction || ''],
-    //                 ['url', url || ''],
-    //                 ['icon', i % 3 === 0 ? 'icon-zhifeiji' : i % 3 === 1 ? 'icon-like_fill' : 'icon-flashlight_fill'],
-    //             ]);
-    //         });
-
-    //         html += '</div>';
-    //     });
-
-    //     // 插入模版
-    //     articleSuffixFlg.length ? articleSuffixFlg.before(html) : postBody.append(html);
-    // }
-
-    // 设置文章目录
-    articleDirectory(_);
+    /**
+     * 设置文章目录
+     */
+    (() => {
+        articleDirectory(_);
+    })();
 }
