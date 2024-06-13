@@ -33,6 +33,8 @@ const generateSectionHtml = (data) => {
 };
 
 export default function main(_) {
+    console.log(_);
+
     // 文章页公共处理
     comArticle(_);
 
